@@ -1,10 +1,6 @@
 package ir.mohsenafshar.apps.kdsample.domain.entity.movie
 
 import com.google.gson.annotations.SerializedName
-import ir.mohsenafshar.apps.kdsample.data.remote.network.model.movie.Genre
-import ir.mohsenafshar.apps.kdsample.data.remote.network.model.movie.ProductionCompany
-import ir.mohsenafshar.apps.kdsample.data.remote.network.model.movie.ProductionCountry
-import ir.mohsenafshar.apps.kdsample.data.remote.network.model.movie.SpokenLanguage
 
 data class MovieDetail(
     val adult: Boolean,
@@ -40,7 +36,6 @@ data class MovieDetail(
     val video: Boolean,
     @SerializedName("vote_average")
     val voteAverage: Double,
-
     @SerializedName("vote_count")
     val voteCount: Int
 )

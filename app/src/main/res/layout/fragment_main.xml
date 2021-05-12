@@ -5,7 +5,6 @@
     <data>
 
         <import type="android.view.View" />
-
         <import type="ir.mohsenafshar.apps.kdsample.util.data.Status" />
 
         <variable
