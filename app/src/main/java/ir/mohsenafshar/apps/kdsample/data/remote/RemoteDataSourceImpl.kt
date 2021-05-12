@@ -2,9 +2,9 @@ package ir.mohsenafshar.apps.kdsample.data.remote
 
 import androidx.lifecycle.LiveData
 import ir.mohsenafshar.apps.kdsample.data.DataSource
-import ir.mohsenafshar.apps.kdsample.domain.entity.movie.GetMovieDetail
 import ir.mohsenafshar.apps.kdsample.data.remote.network.route.Api
 import ir.mohsenafshar.apps.kdsample.domain.entity.DataModel
+import ir.mohsenafshar.apps.kdsample.domain.entity.movie.MovieDetail
 import ir.mohsenafshar.apps.kdsample.util.data.*
 
 
@@ -17,9 +17,9 @@ class RemoteDataSourceImpl(private val api: Api) : DataSource {
         }.asLiveData()
     }
 
-    override fun getDetail(id: Long): LiveData<Resource<GetMovieDetail>> {
-        return object : ResultHandler<GetMovieDetail>() {
-            override fun createCall(): LiveData<ApiResponse<GetMovieDetail>> {
+    override fun getDetail(id: Long): LiveData<Resource<MovieDetail>> {
+        return object : ResultHandler<MovieDetail>() {
+            override fun createCall(): LiveData<ApiResponse<MovieDetail>> {
                 return api.getDetail(id)
             }
         }.asLiveData()

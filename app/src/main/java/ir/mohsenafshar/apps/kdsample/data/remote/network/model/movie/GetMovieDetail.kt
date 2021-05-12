@@ -1,4 +1,5 @@
-package ir.mohsenafshar.apps.kdsample.domain.entity.movie
+package ir.mohsenafshar.apps.kdsample.data.remote.network.model.movie
+
 
 data class GetMovieDetail(
     val adult: Boolean,

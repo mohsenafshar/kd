@@ -46,7 +46,7 @@ class ObserveStarter<T>(private val owner: LifecycleOwner, private val liveData:
                     stack.onLoading?.invoke()
                 }
                 is Resource.Success<T> -> {
-                    it.data.let { data -> stack.onSuccess?.invoke(data) }
+                    it.data.let { data -> stack.onSuccess?.invoke(data!!) }
                 }
                 is Resource.Fail<T> -> {
                     if (isStarted)

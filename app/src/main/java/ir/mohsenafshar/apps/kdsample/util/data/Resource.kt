@@ -1,10 +1,10 @@
 package ir.mohsenafshar.apps.kdsample.util.data
 
 
-sealed class Resource<T>(val status: Status) {
+sealed class Resource<T>(val status: Status, val data: T? = null) {
     object Loading : Resource<Nothing>(Status.LOADING)
 
-    class Success<T>(val data: T) : Resource<T>(Status.SUCCESS)
+    class Success<T>(data: T) : Resource<T>(Status.SUCCESS, data)
 
     class Fail<T>(val error: ApiError) : Resource<T>(Status.ERROR)
 

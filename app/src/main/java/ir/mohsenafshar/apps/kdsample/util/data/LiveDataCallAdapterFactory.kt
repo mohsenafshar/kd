@@ -2,7 +2,6 @@ package ir.mohsenafshar.apps.kdsample.util.data
 
 import androidx.lifecycle.LiveData
 import ir.mohsenafshar.apps.kdsample.data.remote.network.model.PagingList
-import ir.mohsenafshar.apps.kdsample.data.remote.network.model.ResponseModel
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
