@@ -3,6 +3,7 @@ package ir.mohsenafshar.apps.kdsample
 import android.app.Application
 import android.content.Context
 import com.facebook.stetho.Stetho
+import ir.mohsenafshar.apps.kdsample.BuildConfig
 import ir.mohsenafshar.apps.kdsample.di.appModule
 import ir.mohsenafshar.apps.kdsample.di.networkModule
 import org.koin.android.ext.koin.androidContext

@@ -1,21 +1,31 @@
 package ir.mohsenafshar.apps.kdsample.ui.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import ir.mohsenafshar.apps.kdsample.domain.entity.DataModel
+import androidx.lifecycle.*
+import ir.mohsenafshar.apps.kdsample.domain.dto.GetMovieParams
+import ir.mohsenafshar.apps.kdsample.domain.entity.movie.MovieItem
 import ir.mohsenafshar.apps.kdsample.domain.usecase.GetModelListUseCase
 import ir.mohsenafshar.apps.kdsample.util.data.Resource
 
 class MainViewModel(private val useCase: GetModelListUseCase): ViewModel() {
+    private val cachedDataList = arrayListOf<MovieItem>()
 
-    private val mTopRated = MutableLiveData<Int>()
-    val topRated: LiveData<Resource<List<DataModel>>> = Transformations.switchMap(mTopRated) {
-        useCase.invoke(it)
+    private val mCurrentPageIndex: MutableLiveData<Int> = MutableLiveData(1)
+    private val mQuery = MutableLiveData("")
+
+    val movies: LiveData<Resource<List<MovieItem>>> = mCurrentPageIndex.switchMap { index ->
+        useCase.invoke(GetMovieParams(index, mQuery.value))
     }
 
-    fun getTopRated(pageNo: Int) {
-        mTopRated.value = pageNo
+    fun setQuery(originalInput: String) {
+        if (originalInput == mQuery.value) {
+            return
+        }
+        cachedDataList.clear()
+        mQuery.value = originalInput
+        mCurrentPageIndex.value = 1
+    }
+
+    fun loadNextPage() {
+        mCurrentPageIndex.value = mCurrentPageIndex.value!!.plus(1)
     }
 }

@@ -17,7 +17,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
 
     override fun onCreateBinding() {
         initView()
-        initClickListeners()
         initObservers()
 
         viewModel.getDetail(navArgs.id)
@@ -25,9 +24,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
 
     private fun initView() {
         binding.vm = viewModel
-    }
-
-    private fun initClickListeners() {
     }
 
     private fun initObservers() {

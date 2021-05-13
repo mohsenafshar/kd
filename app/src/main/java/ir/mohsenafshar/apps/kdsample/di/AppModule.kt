@@ -1,10 +1,10 @@
 package ir.mohsenafshar.apps.kdsample.di
 
 import android.content.Context
-import ir.mohsenafshar.apps.kdsample.data.DataSource
-import ir.mohsenafshar.apps.kdsample.data.RepositoryImpl
-import ir.mohsenafshar.apps.kdsample.data.remote.RemoteDataSourceImpl
-import ir.mohsenafshar.apps.kdsample.domain.repository.Repository
+import ir.mohsenafshar.apps.kdsample.data.MovieDataSource
+import ir.mohsenafshar.apps.kdsample.data.MovieRepositoryImpl
+import ir.mohsenafshar.apps.kdsample.data.remote.RemoteMovieDataSourceImpl
+import ir.mohsenafshar.apps.kdsample.domain.repository.MovieRepository
 import ir.mohsenafshar.apps.kdsample.domain.usecase.GetDetailUseCase
 import ir.mohsenafshar.apps.kdsample.domain.usecase.GetModelListUseCase
 import ir.mohsenafshar.apps.kdsample.ui.detail.DetailViewModel
@@ -16,9 +16,9 @@ import org.koin.dsl.module
 val appModule = module {
     factory { (c: Context) -> GlobalApiErrorHandler(c) }
 
-    single<DataSource> { RemoteDataSourceImpl(get()) }
+    single<MovieDataSource> { RemoteMovieDataSourceImpl(get()) }
 
-    single<Repository> { RepositoryImpl(get()) }
+    single<MovieRepository> { MovieRepositoryImpl(get()) }
 
     single { GetModelListUseCase(get()) }
     single { GetDetailUseCase(get()) }

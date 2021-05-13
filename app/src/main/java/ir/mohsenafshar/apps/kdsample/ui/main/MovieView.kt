@@ -8,9 +8,10 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.google.android.material.card.MaterialCardView
 import ir.mohsenafshar.apps.kdsample.R
-import ir.mohsenafshar.apps.kdsample.domain.entity.DataModel
+import ir.mohsenafshar.apps.kdsample.domain.entity.movie.MovieItem
 
 class MovieView @JvmOverloads constructor(
     context: Context,
@@ -18,10 +19,11 @@ class MovieView @JvmOverloads constructor(
     defStyle: Int = 0
 ) : FrameLayout(context, attrs, defStyle) {
 
-    private var dataModel: DataModel? = null
+    private var movieItem: MovieItem? = null
 
     private lateinit var root: MaterialCardView
     private lateinit var tvName: TextView
+    private lateinit var tvReleaseDate: TextView
 
     private fun initView() {
         // Inflate And Add Child
@@ -32,20 +34,27 @@ class MovieView @JvmOverloads constructor(
         val view = LayoutInflater.from(context).inflate(R.layout.view_movie, this, true)
 
         // Find Child Views
-        root = findViewById(R.id.root)
+        root = findViewById<MaterialCardView>(R.id.root).apply {
+            setOnClickListener {
+                if (movieItem == null) return@setOnClickListener
+                it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(movieItem!!.id))
+            }
+        }
         tvName = view.findViewById(R.id.tvName)
+        tvReleaseDate = view.findViewById(R.id.tvReleaseDate)
 
     }
 
-    fun setData(data: DataModel) {
-        dataModel = data
+    fun setData(data: MovieItem) {
+        movieItem = data
 
         tvName.text = data.title
+        tvReleaseDate.text = data.releaseDate
     }
 
-    fun setOnRootClickListener(onContentViewClicked: (view: View, data: DataModel?) -> Unit) {
+    fun setOnRootClickListener(onContentViewClicked: (view: View, data: MovieItem?) -> Unit) {
         root.setOnClickListener {
-            onContentViewClicked.invoke(root, dataModel)
+            onContentViewClicked.invoke(root, movieItem)
         }
     }
 

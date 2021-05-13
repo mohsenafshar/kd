@@ -67,6 +67,9 @@ dependencies {
     implementation "com.facebook.stetho:stetho:1.5.1"
     implementation "com.facebook.stetho:stetho-okhttp3:1.5.1"
 
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.12'
+
     // Koin AndroidX ViewModel features - this dep contains core features
     implementation "org.koin:koin-androidx-viewmodel:2.0.1"
     androidTestImplementation "org.koin:koin-test:2.0.1"
@@ -78,4 +81,20 @@ dependencies {
     // Glide
     implementation "com.github.bumptech.glide:glide:4.12.0"
     kapt "com.github.bumptech.glide:compiler:4.12.0"
+
+    ext.deps = [:]
+    def versions = [:]
+    versions.lifecycle = "2.2.0"
+    def lifecycle = [:]
+    lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
+    lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+    lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+    lifecycle.viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+    lifecycle.livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+    deps.lifecycle = lifecycle
+
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.java8
+    implementation deps.lifecycle.livedata_ktx
+    kapt deps.lifecycle.compiler
 }
