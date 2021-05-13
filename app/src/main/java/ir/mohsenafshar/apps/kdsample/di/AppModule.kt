@@ -5,8 +5,8 @@ import ir.mohsenafshar.apps.kdsample.data.MovieDataSource
 import ir.mohsenafshar.apps.kdsample.data.MovieRepositoryImpl
 import ir.mohsenafshar.apps.kdsample.data.remote.RemoteMovieDataSourceImpl
 import ir.mohsenafshar.apps.kdsample.domain.repository.MovieRepository
-import ir.mohsenafshar.apps.kdsample.domain.usecase.GetDetailUseCase
-import ir.mohsenafshar.apps.kdsample.domain.usecase.GetModelListUseCase
+import ir.mohsenafshar.apps.kdsample.domain.usecase.GetDetailMovieUseCase
+import ir.mohsenafshar.apps.kdsample.domain.usecase.GetMovieListUseCase
 import ir.mohsenafshar.apps.kdsample.ui.detail.DetailViewModel
 import ir.mohsenafshar.apps.kdsample.ui.main.MainViewModel
 import ir.mohsenafshar.apps.kdsample.util.data.GlobalApiErrorHandler
@@ -20,8 +20,8 @@ val appModule = module {
 
     single<MovieRepository> { MovieRepositoryImpl(get()) }
 
-    single { GetModelListUseCase(get()) }
-    single { GetDetailUseCase(get()) }
+    single { GetMovieListUseCase(get()) }
+    single { GetDetailMovieUseCase(get()) }
 
     viewModel { MainViewModel(get()) }
     viewModel { DetailViewModel(get()) }
